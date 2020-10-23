@@ -1,14 +1,7 @@
+"""Находит площадь трапеции"""
+
 from math import sqrt
-from helpers import ask
-
-
-def input_number(txt):
-    """Запрашиват у пользователя положительное числовое значение"""
-    while True:
-        user_input = input(txt)
-        if user_input.isdigit():
-            return int(user_input)
-        print('Неверное значение. Повторите ввод.')
+from helpers import ask, input_number
 
 
 def main():
@@ -18,7 +11,7 @@ def main():
         trapezoid_type = input_number(
               'Выберите тип трапеции:\n'
               '1)Произвольная; 2)Равнобедренная; 3)Прямоугольная.\n'
-              'Введите номер варианта:> ')
+              'Введите номер варианта > ')
         # Инициализируем значения оснований и высоты
         a, b, h = 0, 0, 0
         # Произвольная трапеция

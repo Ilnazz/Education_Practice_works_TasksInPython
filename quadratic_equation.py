@@ -1,3 +1,5 @@
+"""Решает квадратное уравнение"""
+
 from helpers import ask
 
 
@@ -29,7 +31,8 @@ def get_coefficient(letter):
 
 
 def main():
-    print('Quadratic equation solver v1.0')
+    print('Quadratic equation solver v1.0\n'
+          'Уравнение имеет вид: ax^2 + bx + c = 0')
     while True:
         # Принимаем коэффициенты
         a = get_coefficient('a')

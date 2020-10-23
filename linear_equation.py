@@ -1,3 +1,5 @@
+"""Решает линейное уравнение"""
+
 import re
 from helpers import ask
 
@@ -69,13 +71,16 @@ def input_equation():
 
 
 def main():
-    print('Linear equation solver v1.0')
+    print('Linear equation solver v1.0\n'
+          'Уравнение задается в виде: [-]kx [+-] b = [-]c\n'
+          'Где k, b, c - целые числа.\n'
+          'Пример уравнения -5x + 10 = 20')
     while True:
         # Принимаем линейное уравнение
         eq = input_equation()
         # Решаем уравнение
         x = solve_equation(eq)
-        print(x)
+        print('Ответ: x = {0}'.format(x))
         if not ask('Продолжить работу', 'y', 'n'):
             break
 

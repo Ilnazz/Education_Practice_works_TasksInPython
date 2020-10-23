@@ -1,19 +1,21 @@
+"""Решает систему линейных уравнений"""
+
 import re
 from helpers import ask
 
-# Определяем шаблон для линейного уравнения вида [-]ax [+-] bx = [-]c
+# Определяем шаблон для линейного уравнения вида [-]ax [+-] by = [-]c
 equation_pattern = r'(-*\d*)\s*x\s*([+-]\s*\d*)\s*y\s*=\s*(-?\d+)'
 # Специальный объект, предоставляющий возможность проверки соответствия строки шаблону
 equation_matcher = re.compile(equation_pattern, re.IGNORECASE | re.ASCII)
 
 
 def is_equation(s):
-    """Проверяет, является ли строка s линейным уравнением вида [-]ax [+-] bx = [-]c"""
+    """Проверяет, является ли строка s линейным уравнением вида [-]ax [+-] by = [-]c"""
     return equation_matcher.fullmatch(s) is not None
 
 
 def extract_abc(equation):
-    """Извлекает значения коэффициентов a, b и c из линейного уравнения вида [-]ax [+-] bx = [-]c"""
+    """Извлекает значения коэффициентов a, b и c из линейного уравнения вида [-]ax [+-] by = [-]c"""
     match = equation_matcher.match(equation)
     raw_a, raw_b, raw_c = match.groups()
     # Обработать a
@@ -66,7 +68,11 @@ def input_equation(txt):
 
 
 def main():
-    print('Linear equations system solver v1.0')
+    print('Linear equations system solver v1.0\n'
+          'Система из двух линейных уравнений вида:\n'
+          '[-]ax [+-] by = [-]c\n'
+          'Где a, b, c - целые числа\n'
+          'Пример уравнения: -6x + 5y = -10')
     while True:
         # Принимаем линейные уравнения
         eq1 = input_equation('Введите первое уравнение: ')

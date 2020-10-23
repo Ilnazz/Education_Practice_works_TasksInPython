@@ -8,3 +8,12 @@ def ask(question, yes, no):
     if answer == yes:
         return True
     return False
+
+
+def input_number(txt):
+    """Запрашиват у пользователя положительное числовое значение"""
+    while True:
+        user_input = input(txt)
+        if user_input.isdigit():
+            return int(user_input)
+        print('Неверное значение. Повторите ввод.')
