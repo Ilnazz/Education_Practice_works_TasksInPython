@@ -57,13 +57,27 @@ def input_int_boundaries():
             return min, max
 
 
-def rand_pair(a, b):
+def pair_exists(pair):
+  for p in known_pairs:
+      if p == pair:
+        return True
+  return False
+
+def new_rand_pair(a, b):
     """Возвращает пару случайных элементов из списков a и b"""
     if len(a) < 1 or len(b) < 1:
         raise Exception('Ошибка: cписок должен содержать хотя бы один элемент.')
     fst = random.choice(a)
     snd = random.choice(b)
-    return fst, snd
+    pair = (fst, snd)
+    if not pair_exists(pair):
+        known_pairs.append(pair)
+        return fst, snd
+    
+    if len(known_pairs) < len(a):
+      raise Exception('Ошибка: количество возможных пар исчерпано.')
+    
+    return pair
 # ==============================================================================
 
 
@@ -126,8 +140,8 @@ def generate_random_pairs():
             break
     girls = ['Девочка_№' + str(n) for n in range(1, girls_number+1)]
     boys = ['Мальчик_№' + str(n) for n in range(1, boys_number+1)]
-    pairs_number = min(girls_number, boys_number)
-    pairs = [rand_pair(girls, boys) for _ in range(pairs_number)]
+    pairs_number = girls_number * boys_number
+    pairs = [new_rand_pair(girls, boys) for _ in range(pairs_number)]
     print('Случайные пары: ')
     for n, p in enumerate(pairs):
         print(n+1, '-', p[0], 'и', p[1])
